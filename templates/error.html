@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Página no disponible{% endblock %}
+{% block content %}
+<section class="card result-card">
+  <p class="eyebrow">Error {{ codigo }}</p>
+  {% if codigo == 404 %}
+    <h1>Página no encontrada</h1>
+    <p class="lead">La dirección que escribiste no existe en esta aplicación.</p>
+  {% else %}
+    <h1>Acción no permitida</h1>
+    <p class="lead">Esta dirección no acepta ese tipo de solicitud.</p>
+  {% endif %}
+  <a class="button" href="{{ url_for('inicio') }}">Volver al menú principal</a>
+</section>
+{% endblock %}

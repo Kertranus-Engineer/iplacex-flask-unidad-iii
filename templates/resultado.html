@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Resultado | Ejercicios con Flask{% endblock %}
+{% block content %}
+<section class="card result-card">
+  {% if tipo == 'notas' %}
+    <p class="eyebrow">Resultado · Ejercicio 1</p>
+    <p class="badge {{ 'ok' if aprobado else 'bad' }}">{{ 'APROBADO' if aprobado else 'REPROBADO' }}</p>
+    <p class="result-value">Promedio: <strong>{{ promedio }}</strong></p>
+    <p>Asistencia: <strong>{{ asistencia }} %</strong></p>
+    <p class="note">Para aprobar se necesita promedio mínimo 40 y asistencia mínima 75 %.</p>
+    <a class="button" href="{{ url_for('ejercicio1') }}">Probar otras notas</a>
+  {% else %}
+    <p class="eyebrow">Resultado · Ejercicio 2</p>
+    <h1>{{ 'Nombres con más letras' if hay_empate else 'Nombre con más letras' }}</h1>
+    <p class="result-value"><strong>{{ ganadores }}</strong></p>
+    {% if hay_empate %}<p class="note">Hay un empate: tienen la misma cantidad de letras.</p>{% endif %}
+    <p>Cantidad de caracteres (letras): <strong>{{ max_letras }}</strong></p>
+    <ul class="detail">
+      {% for nombre, cantidad in detalle %}<li>{{ nombre }} <span>{{ cantidad }}</span></li>{% endfor %}
+    </ul>
+    <a class="button" href="{{ url_for('ejercicio2') }}">Probar otros nombres</a>
+  {% endif %}
+  <p class="underlink"><a href="{{ url_for('inicio') }}">Volver al menú principal</a></p>
+</section>
+{% endblock %}

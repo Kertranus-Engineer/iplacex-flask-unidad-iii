@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Inicio | Ejercicios con Flask{% endblock %}
+{% block content %}
+<section class="card hero">
+  <p class="eyebrow">Evaluación · Unidad III</p>
+  <h1>Ejercicios con Flask</h1>
+  <p class="lead">Elige un ejercicio para completar el formulario y ver el resultado.</p>
+  <div class="choices">
+    <a class="choice" href="{{ url_for('ejercicio1') }}">
+      <span class="choice-number">01</span>
+      <strong>Ejercicio 1</strong>
+      <small>Promedio de notas y asistencia</small>
+      <span class="button">Abrir ejercicio 1</span>
+    </a>
+    <a class="choice" href="{{ url_for('ejercicio2') }}">
+      <span class="choice-number">02</span>
+      <strong>Ejercicio 2</strong>
+      <small>Nombre con más letras</small>
+      <span class="button">Abrir ejercicio 2</span>
+    </a>
+  </div>
+</section>
+{% endblock %}

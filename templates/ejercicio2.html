@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Ejercicio 2 | Nombres{% endblock %}
+{% block content %}
+<section class="card form-card">
+  <a class="back" href="{{ url_for('inicio') }}">← Volver al menú</a>
+  <p class="eyebrow">Ejercicio 2</p>
+  <h1>Formulario de nombres</h1>
+  <p class="lead">Escribe tres nombres diferentes. Se mostrará cuál tiene más letras (no se cuentan espacios, guiones ni números).</p>
+  {% if error %}<div class="alert" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="{{ url_for('ejercicio2') }}" novalidate>
+    {% for campo, etiqueta in [('nombre1', 'Nombre 1'), ('nombre2', 'Nombre 2'), ('nombre3', 'Nombre 3')] %}
+    <label for="{{ campo }}">{{ etiqueta }}</label>
+    <input id="{{ campo }}" name="{{ campo }}" type="text" autocomplete="off" maxlength="80"
+           placeholder="Escribe un nombre" value="{{ datos.get(campo, '') }}"
+           {% if campo_error == campo %}class="invalid" aria-invalid="true" autofocus{% endif %}>
+    {% endfor %}
+    <button class="button" type="submit">Enviar</button>
+  </form>
+</section>
+{% endblock %}

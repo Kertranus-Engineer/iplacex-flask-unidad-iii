@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Ejercicio 1 | Notas{% endblock %}
+{% block content %}
+<section class="card form-card">
+  <a class="back" href="{{ url_for('inicio') }}">← Volver al menú</a>
+  <p class="eyebrow">Ejercicio 1</p>
+  <h1>Formulario de notas</h1>
+  <p class="lead">Ingresa tres notas de 10 a 70 y la asistencia de 0 a 100 %. Se aprueba con promedio ≥ 40 y asistencia ≥ 75 %.</p>
+  {% if error %}<div class="alert" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="{{ url_for('ejercicio1') }}" novalidate>
+    {% for campo, etiqueta in [('nota1', 'Nota 1'), ('nota2', 'Nota 2'), ('nota3', 'Nota 3'), ('asistencia', 'Asistencia (%)')] %}
+    <label for="{{ campo }}">{{ etiqueta }}</label>
+    <input id="{{ campo }}" name="{{ campo }}" type="text" inputmode="decimal" autocomplete="off" maxlength="6"
+           placeholder="{{ 'Por ejemplo: 80' if campo == 'asistencia' else 'Por ejemplo: 55' }}"
+           value="{{ datos.get(campo, '') }}"
+           {% if campo_error == campo %}class="invalid" aria-invalid="true" autofocus{% endif %}>
+    {% endfor %}
+    <button class="button" type="submit">Enviar</button>
+  </form>
+</section>
+{% endblock %}
